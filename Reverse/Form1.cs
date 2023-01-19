@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Drawing;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Reverse
 {
@@ -11,6 +13,7 @@ namespace Reverse
 
         List<int> X_range = new List<int>();
         List<int> Y_range = new List<int>();
+        
 
         bool color_stage = false;
 
@@ -18,8 +21,11 @@ namespace Reverse
 
         public List<Tuple<int, int>> data_dump = new List<Tuple<int, int>>();
         public List<Tuple<int, int>> content = new List<Tuple<int, int>>();
-        int color_for_change = 0;
-
+        public int color_for_change = 0;
+        
+        public int result_color = 0;
+        public int black_count = 0;
+        public int white_count = 0;
         // none = 0, black = 1, white = 2
         public Form1()
         {
@@ -63,7 +69,7 @@ namespace Reverse
 
 
         }
-
+        
         private void Draw(Graphics g)
         {
             for (int i = 0; i < 8; i++)
@@ -234,6 +240,14 @@ namespace Reverse
                     {
                         return false;
                     }
+                    else if (board[y, x].color == 1)
+                    {
+                        black_count++;
+                    }
+                    else if (board[y, x].color == 2)
+                    {
+                        white_count++;
+                    }
                 }
 
             }
@@ -257,7 +271,7 @@ namespace Reverse
 
             //////////////
 
-            data_dump.Clear();
+            //data_dump.Clear();
             
 
             if (y != 7)
@@ -388,7 +402,7 @@ namespace Reverse
 
             color_for_change = color_wanted;
 
-            content.Clear();
+            //content.Clear();
             attack_dir(y, x, color);
             
 
@@ -420,9 +434,17 @@ namespace Reverse
                     }
 
                 }
-            }
-            Console.WriteLine(content);
+            }           
 
+        }
+
+        public void label1_Click(object sender, EventArgs e)
+        {
+            //if (data_dump.Count != 0)
+            {
+                //label1.Text = (data_dump[data_dump.Count-1].Item1.ToString());
+            }
+            
         }
 
         public void Draw_attack() { 
@@ -442,6 +464,7 @@ namespace Reverse
 
             int current_color = 0;
 
+            label1_Click(sender, e);
 
             if (color_stage == false)
             {
@@ -458,8 +481,6 @@ namespace Reverse
 
             if (end_of_game() == false)
             {
-
-
                 if (board[tmp_y, tmp_x].color == 0)
                 {
                     if (Position_check(tmp_x, tmp_y, current_color, move_count) == true)
@@ -488,15 +509,25 @@ namespace Reverse
 
                 }
             }
+            else
+            {
+                if (black_count > white_count)
+                {
+                    textBox1.Text = "Black wins";
+                }
+                else if(black_count < white_count)
+                {
+                    textBox1.Text = "White wins";
+                }
+                else
+                {
+                    textBox1.Text = "Draw";
+                }
+            }
 
             pictureBox1.Invalidate();
 
             
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }   

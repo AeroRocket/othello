@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bRH1dUqPMVscGSUNP4cjck7/xStx+yctiQb0R3R1hlL5RkeVtBe66axm4qXOXsF9aXnywqDk8Klfu7B3uYU7rQ==",
+  "dgSpecHash": "FcgnShsZGstmektm96lmQeV+OslPh/o/W9jrM1F0MPZLiazU6WAJC44u0k+Gc3i/xQvFH4tEGbfu3+DeCaM7dA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\oleks\\Downloads\\Reverse\\Reverse\\Reverse.csproj",
+  "projectFilePath": "C:\\Users\\oleks\\Downloads\\othello\\Reverse\\Reverse.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
